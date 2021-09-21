@@ -46,13 +46,11 @@ namespace FirstProject
             while (TryAgain)
             {               
                 Calculate calculate = new Calculate();
-                int TempInt_1;
-                int TempInt_2;
+                int TempInt_1,TempInt_2;
+                int TempInt_3 = 0;
+                int TempInt_4 = 0;
                 int NonZero = 0;
-                string TempString_2;
-                string TempString_3;
-                string TempString_4;
-                string TempString_5;
+                string TempString_2,TempString_3,TempString_4,TempString_5;                             
                 double tempAddition;
                 BuildingString buildingString = new BuildingString();
                 Console.Write("Enter your expressioon, you can use '+' ,'-', '*', '/', digital numbers, decimal numbers like this 32,5 and paranteces ");
@@ -76,6 +74,18 @@ namespace FirstProject
                         NonZero++;
 
                     }
+                    if (c == '(')
+                    {
+                        TempInt_3++;
+                    }
+                    if (c == ')')
+                    {
+                        TempInt_4++;
+                    }
+                    if (TempInt_4 > TempInt_3)
+                    {
+                        NonZero++;
+                    }
                 }
                 for(int i = 0; i < charArray.Length-1; i++)
                 {
@@ -89,14 +99,7 @@ namespace FirstProject
                         NonZero++;
                     }
 
-                }
-                for(int i = 1; i < charArray.Length; i++)
-                {
-                    if (charArray[i] == '(' && !(charArray[i - 1] == '+' || charArray[i - 1] == '-' || charArray[i - 1] == '/' || charArray[i - 1] == '*'))
-                    {
-                        NonZero++;
-                    }
-                }              
+                }                      
 
                 StringBuilder stb = buildingString.Strings(expression);
                 Console.WriteLine(stb.ToString());               
